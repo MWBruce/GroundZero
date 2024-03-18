@@ -14,9 +14,13 @@ def on_user_select(event):
     chat_display.insert(tk.END, f"Random users generated: {', '.join(random_users)}\n")
 
 def send_message():
-    message = message_entry.get()
-    chat_display.insert(tk.END, f"You: {message}\n")
-    message_entry.delete(0, tk.END)
+    message = message_entry.get().strip()
+    if message: 
+        chat_display.config(state='normal') 
+        chat_display.insert(tk.END, f"You: {message}\n")
+        chat_display.config(state='disabled')  
+        message_entry.delete(0, tk.END)
+
 
 def show_login_window():
     login_result = {"status": 0} 
@@ -60,12 +64,13 @@ root = tk.Tk()
 root.title("Stock and Chat Application")
 root.withdraw() 
 
-login_status = show_login_window()
+# login_status = show_login_window()
+login_status = 1
 if login_status in [1, 2]:
     root.deiconify()  
     print("Success")
     stock_frame = tk.Frame(root)
-    stock_frame.pack(side="left", fill="both", expand=True)
+    stock_frame.grid(row=0, column=0, sticky="nsew") 
 
     stock_label = tk.Label(stock_frame, text="Select Stock:")
     stock_label.pack(pady=10)
@@ -77,8 +82,9 @@ if login_status in [1, 2]:
     stock_display = tk.Label(stock_frame, text="Stock Value: ")
     stock_display.pack(pady=10)
 
+    # Chat section
     chat_frame = tk.Frame(root)
-    chat_frame.pack(side="right", fill="both", expand=True)
+    chat_frame.grid(row=0, column=1, sticky="nsew") 
 
     user_label = tk.Label(chat_frame, text="Select User:")
     user_label.pack(pady=10)
@@ -89,6 +95,11 @@ if login_status in [1, 2]:
 
     chat_display = tk.Text(chat_frame, state='disabled')
     chat_display.pack(pady=10)
+    chat_display.config(state='normal') 
+    for i in range(1, 50):
+        chat_display.insert(tk.END, f"User{i}: Hello! This is a test message.\n")
+    chat_display.config(state='disabled')  
+
 
     message_entry = tk.Entry(chat_frame)
     message_entry.pack(pady=10)
