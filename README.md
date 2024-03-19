@@ -19,3 +19,11 @@ g++ -shared -fPIC -o /lib/libexample.so test.cpp
 source myenv/bin/activate
 
 password will change and Ill try to make that system more secure towards the end of this project
+
+make server use tcp to communicate with open windows
+
+while data collection server uses udp and uses threads/processes to collect data
+
+reader writer problem considerations
+
+message queue and design patterns
