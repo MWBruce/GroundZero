@@ -1,4 +1,4 @@
 #!/bin/bash
 
-g++ -Wall src/server.cpp -o server.out
+g++ -Wall  src/market_server/server.cpp -o server.out
 ./server.out

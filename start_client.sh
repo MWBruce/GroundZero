@@ -1,4 +1,4 @@
 #!/bin/bash
 
-g++ -Wall src/client.cpp -o client.out
+g++ -Wall src/market_server/client.cpp -o client.out
 ./client.out
